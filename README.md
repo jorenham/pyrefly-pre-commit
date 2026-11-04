@@ -46,6 +46,26 @@ repos:
 Note that you must list all of your project's dependencies (aside from `pyrefly`, which is bundled with the hook)
 in `additional_dependencies` for type checking to work correctly.
 
+### Enforcing Type Coverage
+
+To check type coverage on every commit, add the `pyrefly-coverage-check` hook to your
+[prek](https://prek.j178.dev/) or [pre-commit](https://pre-commit.com/) config:
+
+```yaml
+repos:
+  - repo: https://github.com/facebook/pyrefly-pre-commit
+    rev: <pyrefly version>  # 1.5.0 or later
+    hooks:
+      - id: pyrefly-coverage-check
+        args: [--fail-under=80]
+```
+
+The hook fails if the type coverage is below the `--fail-under` percentage (default: 100).
+See the [Pyrefly docs](https://pyrefly.org/en/docs/report/#checking-coverage-against-a-threshold)
+for how coverage is measured and how the threshold works.
+Like `pyrefly-check`, it uses the `pyrefly` bundled with the hook. Add `language: system` to
+use the `pyrefly` on your `PATH` instead.
+
 ### Examples
 
 See the [`examples/`](examples/) directory for complete working examples of both approaches:

@@ -7,3 +7,13 @@
   pass_filenames: false
   require_serial: true
   stages: [pre-commit, pre-merge-commit, pre-push, manual]
+
+- id: pyrefly-coverage-check
+  name: pyrefly coverage check
+  description: "Run `pyrefly coverage check` to enforce a minimum type coverage."
+  entry: pyrefly coverage check
+  language: python
+  types_or: [python, pyi]
+  pass_filenames: false
+  require_serial: true
+  stages: [pre-commit, pre-merge-commit, pre-push, manual]
